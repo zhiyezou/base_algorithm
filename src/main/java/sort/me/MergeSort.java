@@ -1,5 +1,7 @@
 package sort.me;
 
+import java.util.Arrays;
+
 public class MergeSort {
     public static void main(String[] args) {
 
@@ -7,10 +9,12 @@ public class MergeSort {
         //System.out.println(getMax(arr, 0, arr.length - 1));
 
         int[] result = mergeSort(arr, 0, 4);
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
-            System.out.println("test");
-        }
+
+
+        int[] arrL = {1, 3, 4};
+        int[] arrR = {2, 5};
+        System.out.println(Arrays.toString(arr));
+
     }
 
     public static int getMax(int[] arr, int L, int R) {
@@ -27,39 +31,42 @@ public class MergeSort {
         if (L == R) {
             return new int[]{arr[L]};
         }
-        int mid = L + (R - L) >> 1;
+        int mid = (L + R) / 2;
         int[] arrL = mergeSort(arr, L, mid);
         int[] arrR = mergeSort(arr, mid + 1, R);
         return merge(arrL, arrR);
     }
 
     public static int[] merge(int[] arrL, int[] arrR) {
+
         int[] arr = new int[arrL.length + arrR.length];
 
         int pL = 0;
         int pR = 0;
         int i = 0;
-        arr[i] = arrL[pL] < arrR[pR] ? arrL[pL] : arrR[pR];
 
-        while (pL != arrL.length - 1 && pR != arrR.length - 1) {
-            arr[i] = arrL[pL] > arrR[pR] ? arrL[pR] : arrR[pL];
+        do {
             if (arrL[pL] > arrR[pR]) {
+                arr[i] = arrR[pR];
                 pR += 1;
             } else {
+                arr[i] = arrL[pL];
                 pL += 1;
             }
             i++;
+        } while (pL != arrL.length && pR != arrR.length);
+
+        if (pL == arrL.length) {
+            for (int j = pR; j < arrR.length; j++) {
+                arr[i] = arrR[j];
+                i++;
+            }
         }
 
-        if (pL == arrL.length - 1) {
-            for (int j = pR; j < arrR.length; j++) {
-                i++;
-                arr[i] = arrR[j];
-            }
-        } else {
+        if (pR == arrR.length ) {
             for (int j = pL; j < arrL.length; j++) {
-                i++;
                 arr[i] = arrL[j];
+                i++;
             }
         }
         return arr;
