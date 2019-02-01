@@ -9,6 +9,7 @@ public class MergeSort {
         int[] result = mergeSort(arr, 0, 4);
         for (int i = 0; i < result.length; i++) {
             System.out.println(result[i]);
+            System.out.println("test");
         }
     }
 
