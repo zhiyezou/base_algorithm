@@ -23,7 +23,7 @@ public class SmallSum {
         int[] arr = {1, 3, 4, 2, 5};
         small(arr, 0, 4);
         System.out.println(sum);
-        System.out.println(sum(arr,0,2,4));
+        //System.out.println(sum(arr,0,2,4));
     }
 
     public static void small(int[] arr, int L, int R) {
@@ -44,18 +44,19 @@ public class SmallSum {
 
         while (p1 <= mid && p2 <= R) {
             if (arr[p1] < arr[p2]) {
-                //sum = sum + arr[p1];
+                sum = sum + arr[p1];
                 p1++;
             } else {
+                p1=L;
                 p2++;
             }
         }
 
-        if (p2 <= R) {
+        /*if (p2 <= R) {
             for (int i = 0; i < p2; i++) {
                 sum = sum + arr[i];
             }
-        }
+        }*/
         return sum;
     }
 }
