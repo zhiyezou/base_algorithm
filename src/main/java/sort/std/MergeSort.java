@@ -22,6 +22,14 @@ public class MergeSort {
         merge(arr, L, mid, R);
     }
 
+    /**
+     * 归并排序的重点是在merge过程，所谓merge就是想办法把两个有序的数据变成全局有序；
+     * 这个操作没办法在原地完成，需要借助一个辅助数组来存放排序好的数组，最终将整个数组覆盖掉原有数组
+     * @param arr
+     * @param L
+     * @param mid
+     * @param R
+     */
     public static void merge(int[] arr, int L, int mid, int R) {
 
         int[] help = new int[R - L + 1];
