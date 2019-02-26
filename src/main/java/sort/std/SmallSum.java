@@ -1,9 +1,22 @@
 package sort.std;
 
+/**
+ * 为什么归并排序可以加速
+ * 插入排序，冒泡排序有很多无效的对比
+ * <p>
+ * 小范围在合大范围的时候，因为有序是可以通过外排方式来加速
+ * <p>
+ * 两个有序范围的东西合的过程中，不会浪费比较
+ * <p>
+ * 组内比较的次数不会被浪费，永远都是在跨组比较
+ */
 public class SmallSum {
     public static void main(String[] args) {
 
-        int[] arr = {1, 3, 4, 2, 5};
+        //int[] arr = {1, 3, 4, 2, 5};
+        //int []arr = {3, 1, 4, 5, 2};
+        int []arr = {3, 1, 4, 5, 2,7,6};
+
         System.out.println(smallSum(arr));
     }
 
