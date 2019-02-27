@@ -31,5 +31,6 @@ public class RightMethod {
     }
     public static int[] copyArr(int[] arr){
 
+        return null;
     }
 }
