@@ -1,4 +1,4 @@
-package sort.std;
+package sort.std.interview;
 
 /**
  * 为什么归并排序可以加速

@@ -7,13 +7,19 @@ public class MergeSort {
 
         int[] arr = {3, 4, 1, 5, 2};
 
-        sortProcess(arr, 0, arr.length - 1);
-
+        mergeSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
+    public static void mergeSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        sortProcess(arr, 0, arr.length - 1);
+    }
+
     public static void sortProcess(int[] arr, int L, int R) {
-        if (L == R) {
+        if (arr.length == 0 || L == R) {
             return;
         }
         int mid = L + ((R - L) >> 1);
@@ -25,6 +31,7 @@ public class MergeSort {
     /**
      * 归并排序的重点是在merge过程，所谓merge就是想办法把两个有序的数据变成全局有序；
      * 这个操作没办法在原地完成，需要借助一个辅助数组来存放排序好的数组，最终将整个数组覆盖掉原有数组
+     *
      * @param arr
      * @param L
      * @param mid
