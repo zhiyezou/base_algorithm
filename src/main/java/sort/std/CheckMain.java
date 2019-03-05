@@ -1,5 +1,6 @@
 package sort.std;
 
+
 import java.util.Arrays;
 
 public class CheckMain {
@@ -15,9 +16,10 @@ public class CheckMain {
             //test method
             //BubbleSort.bubbleSort(arr1);//Nice
             //InsertSort.insertSort(arr1);//Nice
-            //MergeSort.mergeSort(arr1);
+            //MergeSort.mergeSort(arr1);//Nice
             //SelectionSort.selectionSort(arr1);//Nice
             //QuickSort.quickSort(arr1);//Nice
+            //HeapSort.heapSort(arr1);//Nice
             //test method
             rightMethod(arr2);
             if (!isEqual(arr1, arr2)) {
