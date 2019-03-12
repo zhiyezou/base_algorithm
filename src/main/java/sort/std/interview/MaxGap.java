@@ -31,7 +31,7 @@ public class MaxGap {
         for (int i = 0; i < len; i++) {
             bid = bucket(nums[i], len, min, max);
             mins[bid] = hasNum[bid] ? Math.min(mins[bid], nums[i]) : nums[i];
-            mins[bid] = hasNum[bid] ? Math.max(maxs[bid], nums[i]) : nums[i];
+            maxs[bid] = hasNum[bid] ? Math.max(maxs[bid], nums[i]) : nums[i];
             hasNum[bid] = true;
         }
 
