@@ -23,6 +23,9 @@ public class HeapSort {
     }
 
     public static void heapInsert(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
         for (int i = 0; i < arr.length; i++) {
             while (arr[i] > arr[(i - 1) / 2]) {
                 swap(arr, i, (i - 1) / 2);
@@ -162,5 +165,47 @@ public class HeapSort {
             left = 2 * index + 1;
         }
 
+    }
+
+
+    public static void heapInsert3(int[] arr, int index) {
+        while (arr[index] > arr[(index - 1) / 2]) {
+            swap(arr, index, (index - 1) / 2);
+            index = (index - 1) / 2;
+        }
+    }
+
+
+    public static void heapify3(int[] arr, int index, int heapSize) {
+        int left = 2 * index + 1;
+        while (left < heapSize) {
+            int right = left + 1;
+            int tmp = left;
+            if (right < heapSize) {
+                tmp = arr[left] > arr[right] ? left : right;
+            }
+            tmp = arr[tmp] > arr[index] ? tmp : index;
+            if (tmp == index) {
+                break;
+            }
+            swap(arr, index, tmp);
+            index = tmp;
+            left = 2 * index + 1;
+        }
+    }
+
+    public static void heapSort3(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            heapInsert3(arr, i);
+        }
+        int heapSize = arr.length;
+        swap(arr, 0, --heapSize);
+        while (heapSize > 0) {
+            heapify3(arr, 0, heapSize);
+            swap(arr, 0, --heapSize);
+        }
     }
 }

@@ -19,7 +19,7 @@ public class PCheck {
             //MergeSort.mergeSort(arr1);//Nice
             //SelectionSort.selectionSort(arr1);//Nice
             //QuickSort.quickSort(arr1);//Nice
-            HeapSort.heapSort2(arr1);//Nice
+            HeapSort.heapSort3(arr1);//Nice
             //test method
             rightMethod(arr2);
             if (!isEqual(arr1, arr2)) {
