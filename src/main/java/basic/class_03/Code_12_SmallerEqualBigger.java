@@ -67,7 +67,7 @@ public class Code_12_SmallerEqualBigger {
 		Node next = null; // save next node
 		// every node distributed to three lists
 		while (head != null) {
-			next = head.next;
+			next = head.next;//重新排序则需要剪掉之前的关系（防止出现关系错乱），但是剪掉之前得先保留下head的关系（按原来的关系去遍历）
 			head.next = null;
 			if (head.value < pivot) {
 				if (sH == null) {
