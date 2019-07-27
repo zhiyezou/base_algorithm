@@ -34,26 +34,47 @@ public class Successor {
         head.right.left.parent = head.right;
         head.right.right.parent = head.right;
 
-        System.out.println(printNext(head.right.right).value);
+        printSuccessor(head.right.left);
+        printPrecursor(head.right.left);
     }
 
-    public static Node printNext(Node node) {
-        if (node.right != null) {
-            return getLeft(node.right);
-        } else {
-            Node parent = node.parent;
-            while (parent != null && parent.left != node) {
-                node = parent;
-                parent = node.parent;
+
+    public static void printSuccessor(Node node) {
+        if (node != null) {
+            if (node.right != null) {
+                Node cur = node.right;
+                while (cur.left != null) {
+                    cur = cur.left;
+                }
+                System.out.println(cur.value);
+            } else {
+                Node parent = node.parent;
+                while (parent != null && parent.left != node) {
+                    node = node.parent;
+                    parent = node.parent;
+                }
+                System.out.println(node.parent.value);
             }
-            return parent;
         }
     }
 
-    public static Node getLeft(Node node) {
-        while (node.left != null) {
-            node = node.left;
+
+    public static void printPrecursor(Node node) {
+        if (node != null) {
+            if (node.left != null) {
+                Node cur = node.left;
+                while (cur.right != null) {
+                    cur = cur.right;
+                }
+                System.out.println(cur.value);
+            } else {
+                Node parent = node.parent;
+                while (parent != null && parent.right != node) {
+                    node = node.parent;
+                    parent = node.parent;
+                }
+                System.out.println(node.parent.value);
+            }
         }
-        return node;
     }
 }
