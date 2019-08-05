@@ -41,7 +41,7 @@ public class Code_04_SerializeAndReconstructTree {
         if (head == null) {
             return "#!";//空也要记录到字符串中
         }
-        String res = head.value + "!";
+        String res = head.value + "!";//为什么要跟一个结束符号，因为要区分12，3和1，23这种情况
         res += serialByPre(head.left);
         res += serialByPre(head.right);
         return res;
@@ -58,12 +58,12 @@ public class Code_04_SerializeAndReconstructTree {
 
     public static Node reconPreOrder(Queue<String> queue) {
         String value = queue.poll();
-        if (value.equals("#")) {
+        if (value.equals("#")) {//1.先处理base case
             return null;
         }
-        Node head = new Node(Integer.valueOf(value));
-        head.left = reconPreOrder(queue);
-        head.right = reconPreOrder(queue);
+        Node head = new Node(Integer.valueOf(value));//2.处理当前节点
+        head.left = reconPreOrder(queue);//3.处理左子树
+        head.right = reconPreOrder(queue);//4.处理右子树
         return head;
     }
 
@@ -72,9 +72,9 @@ public class Code_04_SerializeAndReconstructTree {
             return "#!";
         }
         String res = head.value + "!";
-        Queue<Node> queue = new LinkedList<Node>();
+        Queue<Node> queue = new LinkedList<Node>();//为啥不用stack，先进去先出
         queue.offer(head);
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()) {//得想个办法，把这一层的node保存起来，先把一层的数据存起来，然后一个个处理
             head = queue.poll();
             if (head.left != null) {
                 res += head.left.value + "!";
@@ -101,7 +101,7 @@ public class Code_04_SerializeAndReconstructTree {
             queue.offer(head);
         }
         Node node = null;
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()) {//需要一个东西来保存当前层所有的Node
             node = queue.poll();
             node.left = generateNodeByString(values[index++]);
             node.right = generateNodeByString(values[index++]);
