@@ -61,6 +61,8 @@ public class Code_07_IsBSTAndCBT {
      * <p>
      * 二叉树按层遍历
      * 判断逻辑：
+     * （1）有右无左，直接返回false
+     * （2）如果该节点不是左右孩子双全，那么后面遇到的所有节点都必须是叶节点
      *
      * @param head
      * @return
