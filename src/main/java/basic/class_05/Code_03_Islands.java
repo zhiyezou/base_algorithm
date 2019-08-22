@@ -21,7 +21,7 @@ public class Code_03_Islands {
 	}
 
 	public static void infect(int[][] m, int i, int j, int N, int M) {
-		if (i < 0 || i >= N || j < 0 || j >= M || m[i][j] != 1) {
+		if (i < 0 || i >= N || j < 0 || j >= M || m[i][j] != 1) {//一定要过滤掉值不等于1的情况
 			return;
 		}
 		m[i][j] = 2;
