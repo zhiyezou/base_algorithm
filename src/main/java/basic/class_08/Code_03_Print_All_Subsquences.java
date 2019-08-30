@@ -2,7 +2,9 @@ package basic.class_08;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+我们先从头扫描字符串的第一个字符。针对第一个字符，我们有两种选择：第一是把这个字符放到组合中去，接下来我们需要在剩下的n-1个字符中选取m-1个字符；第二是不把这个字符放到组合中去，接下来我们需要在剩下的n-1个字符中选择m个字符。这两种选择都很容易用递归实现。
+*/
 public class Code_03_Print_All_Subsquences {
 
 	public static void printAllSubsquence(String str) {
