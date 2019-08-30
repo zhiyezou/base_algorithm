@@ -10,6 +10,20 @@ public class Code_03_Print_All_Subsquences {
 		process(chs, 0);
 	}
 
+     /**
+     * @param chars
+     * @param i     具体位置
+     * @param res   上级传递给我的结果
+     */
+    public static void process1(char[] chars, int i, String res) {
+        if (i == chars.length) {
+            System.out.println(res);
+            return;
+        }
+
+        process(chars, i + 1, res);
+        process(chars, i + 1, res + chars[i]);
+    }
 	public static void process(char[] chs, int i) {
 		if (i == chs.length) {
 			System.out.println(String.valueOf(chs));
