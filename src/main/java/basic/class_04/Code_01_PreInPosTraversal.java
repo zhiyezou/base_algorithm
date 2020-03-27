@@ -85,7 +85,7 @@ public class Code_01_PreInPosTraversal {
         if (head != null) {
             Stack<Node> stack = new Stack<Node>();
 
-            //压入一溜左边界，依次往外弹的，弹到每一个节点再去遍历它右孩子的过程，就模拟了左中右的过程
+            //压入一溜左边界，依次往外弹（弹出的过程模拟的是先打印左再打印中的过程），弹到每一个节点再去遍历它右孩子的过程，就模拟了左中右的过程
             while (!stack.isEmpty() || head != null) {//当前节点一定会把自己的左边界压入栈中
                 if (head != null) {//1.当前节点不为空，当前节点压入栈，当前节点向左
                     stack.push(head);
