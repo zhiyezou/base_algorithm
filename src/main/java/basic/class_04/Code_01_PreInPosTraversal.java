@@ -6,15 +6,13 @@ import java.util.Stack;
  * 先序遍历就是，先打印当前节点，然后打印左子树，然后再打印右子树的过程。
  * 中序遍历就是，先打印左子树，然后打印当前节点，然后再打印右子树的过程。
  * 后序遍历就是，先打印左子树，然后打印右子树，然后再打印当前节点的过程。
- *
- *              1
- *      2               3
+ * <p>
+ * 1
+ * 2               3
  * 4        5       6          7
- *
+ * <p>
  * 不考虑打印，用递归方式访问这颗树的顺序为，12442555213666377731
  * 把打印时机放在第一次来到当前节点的时候，就是先序遍历，第二次，第三次以此类推。
- *
- *
  */
 public class Code_01_PreInPosTraversal {
 
@@ -57,8 +55,9 @@ public class Code_01_PreInPosTraversal {
 
     /**
      * 为什么使用Stack
-     *
+     * <p>
      * 二叉树的节点是，一个当前节点走向左孩子，走向右孩子，他只有从上到下的路径，没有回去的路径。
+     *
      * @param head
      */
     public static void preOrderUnRecur(Node head) {
@@ -80,6 +79,15 @@ public class Code_01_PreInPosTraversal {
         System.out.println();
     }
 
+    /**
+     * 基本思想：
+     * <p>
+     * 1.建立一个栈
+     * 2.根节点进栈，遍历左子树
+     * 3.根节点出栈，输出根节点，遍历右子树
+     *
+     * @param head
+     */
     public static void inOrderUnRecur(Node head) {
         System.out.print("in-order: ");
         if (head != null) {

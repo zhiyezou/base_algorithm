@@ -67,6 +67,12 @@ public class Code_04_SerializeAndReconstructTree {
         return head;
     }
 
+    /**
+     * 类似于图的广度优先遍历，使用队列实现
+     *
+     * @param head
+     * @return
+     */
     public static String serialByLevel(Node head) {
         if (head == null) {
             return "#!";
