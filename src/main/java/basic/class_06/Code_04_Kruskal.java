@@ -7,85 +7,98 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * 最小生成树和最短路径的区别
+ * 定义：
+ * 　　　　最小生成树能够保证整个拓扑图的所有路径之和最小，但不能保证任意两点之间是最短路径。
+ * 　　　　最短路径是从一点出发，到达目的地的路径最小。
+ * <p>
+ * 总结：
+ * 　　　　遇到求所有路径之和最小的问题用最小生成树&并查集解决；
+ * 　　　　遇到求两点间最短路径问题的用最短路，即从一个城市到另一个城市最短的路径问题。
+ * <p>
+ * 区别：
+ * 　　　　最小生成树构成后所有的点都被连通，而最短路只要到达目的地走的是最短的路径即可，与所有的点连不连通没有关系。
+ */
 //undirected graph only
 public class Code_04_Kruskal {
 
-	// Union-Find Set
-	public static class UnionFind {
-		private HashMap<Node, Node> fatherMap;
-		private HashMap<Node, Integer> rankMap;
+    // Union-Find Set
+    public static class UnionFind {
+        private HashMap<Node, Node> fatherMap;
+        private HashMap<Node, Integer> rankMap;
 
-		public UnionFind() {
-			fatherMap = new HashMap<Node, Node>();
-			rankMap = new HashMap<Node, Integer>();
-		}
+        public UnionFind() {
+            fatherMap = new HashMap<Node, Node>();
+            rankMap = new HashMap<Node, Integer>();
+        }
 
-		private Node findFather(Node n) {
-			Node father = fatherMap.get(n);
-			if (father != n) {
-				father = findFather(father);
-			}
-			fatherMap.put(n, father);
-			return father;
-		}
+        private Node findFather(Node n) {
+            Node father = fatherMap.get(n);
+            if (father != n) {
+                father = findFather(father);
+            }
+            fatherMap.put(n, father);
+            return father;
+        }
 
-		public void makeSets(Collection<Node> nodes) {
-			fatherMap.clear();
-			rankMap.clear();
-			for (Node node : nodes) {
-				fatherMap.put(node, node);
-				rankMap.put(node, 1);
-			}
-		}
+        public void makeSets(Collection<Node> nodes) {
+            fatherMap.clear();
+            rankMap.clear();
+            for (Node node : nodes) {
+                fatherMap.put(node, node);
+                rankMap.put(node, 1);
+            }
+        }
 
-		public boolean isSameSet(Node a, Node b) {
-			return findFather(a) == findFather(b);
-		}
+        public boolean isSameSet(Node a, Node b) {
+            return findFather(a) == findFather(b);
+        }
 
-		public void union(Node a, Node b) {
-			if (a == null || b == null) {
-				return;
-			}
-			Node aFather = findFather(a);
-			Node bFather = findFather(b);
-			if (aFather != bFather) {
-				int aFrank = rankMap.get(aFather);
-				int bFrank = rankMap.get(bFather);
-				if (aFrank <= bFrank) {
-					fatherMap.put(aFather, bFather);
-					rankMap.put(bFather, aFrank + bFrank);
-				} else {
-					fatherMap.put(bFather, aFather);
-					rankMap.put(aFather, aFrank + bFrank);
-				}
-			}
-		}
-	}
+        public void union(Node a, Node b) {
+            if (a == null || b == null) {
+                return;
+            }
+            Node aFather = findFather(a);
+            Node bFather = findFather(b);
+            if (aFather != bFather) {
+                int aFrank = rankMap.get(aFather);
+                int bFrank = rankMap.get(bFather);
+                if (aFrank <= bFrank) {
+                    fatherMap.put(aFather, bFather);
+                    rankMap.put(bFather, aFrank + bFrank);
+                } else {
+                    fatherMap.put(bFather, aFather);
+                    rankMap.put(aFather, aFrank + bFrank);
+                }
+            }
+        }
+    }
 
-	public static class EdgeComparator implements Comparator<Edge> {
+    public static class EdgeComparator implements Comparator<Edge> {
 
-		@Override
-		public int compare(Edge o1, Edge o2) {
-			return o1.weight - o2.weight;
-		}
+        @Override
+        public int compare(Edge o1, Edge o2) {
+            return o1.weight - o2.weight;
+        }
 
-	}
+    }
 
-	public static Set<Edge> kruskalMST(Graph graph) {
-		UnionFind unionFind = new UnionFind();
-		unionFind.makeSets(graph.nodes.values());
-		PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(new EdgeComparator());
-		for (Edge edge : graph.edges) {
-			priorityQueue.add(edge);
-		}
-		Set<Edge> result = new HashSet<>();
-		while (!priorityQueue.isEmpty()) {
-			Edge edge = priorityQueue.poll();
-			if (!unionFind.isSameSet(edge.from, edge.to)) {
-				result.add(edge);
-				unionFind.union(edge.from, edge.to);
-			}
-		}
-		return result;
-	}
+    public static Set<Edge> kruskalMST(Graph graph) {
+        UnionFind unionFind = new UnionFind();
+        unionFind.makeSets(graph.nodes.values());
+        PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(new EdgeComparator());
+        for (Edge edge : graph.edges) {
+            priorityQueue.add(edge);
+        }
+        Set<Edge> result = new HashSet<>();
+        while (!priorityQueue.isEmpty()) {
+            Edge edge = priorityQueue.poll();
+            if (!unionFind.isSameSet(edge.from, edge.to)) {
+                result.add(edge);
+                unionFind.union(edge.from, edge.to);
+            }
+        }
+        return result;
+    }
 }
