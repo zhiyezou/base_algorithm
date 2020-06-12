@@ -3,6 +3,7 @@ package basic.class_01;
 import java.util.Arrays;
 
 /**
+ * 分治思想
  * 时间复杂度O(N*logN),空间复杂度O(N)
  * 1.左侧部分先排好序；
  * 2.右侧部分再排好序；
@@ -22,9 +23,10 @@ public class Code_05_MergeSort {
             return;
         }
         int mid = l + ((r - l) >> 1);//L和R中点的位置
-        mergeSort(arr, l, mid);
-        mergeSort(arr, mid + 1, r);
-        merge(arr, l, mid, r);
+        mergeSort(arr, l, mid);//T(n/2)
+        mergeSort(arr, mid + 1, r);//T(n/2)
+        merge(arr, l, mid, r);//O(n)
+        //T(n)=2T(n/2)+O(n)
     }
 
     public static void merge(int[] arr, int l, int m, int r) {
@@ -35,6 +37,8 @@ public class Code_05_MergeSort {
         while (p1 <= m && p2 <= r) {
             help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
+
+        //两个必有且只有一个越界
         while (p1 <= m) {
             help[i++] = arr[p1++];
         }
