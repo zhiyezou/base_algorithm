@@ -3,11 +3,13 @@ package basic.class_01;
 import java.util.Arrays;
 
 /**
- * 分治思想
+ * 重要思想：分治思想
  * 时间复杂度O(N*logN),空间复杂度O(N)
  * 1.左侧部分先排好序；
  * 2.右侧部分再排好序；
  * 3.整体再排好序；（准备一个辅助数组，两个指针，分别指向左侧和右侧的下标，谁小谁往辅助数组填，下标向后移动）
+ * <p>
+ * 缺点：数组拷贝
  */
 public class Code_05_MergeSort {
 
